@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"sort"
 )
+/*
+golang 此代码提交超时，C++版本与此代码思路一致。
+ */
 
 /**
 * @Author: hsq_roy
@@ -22,18 +25,21 @@ type Stu struct {
 	CapabilityScore int
 	Group           int
 }
+
+// toString
 func (s Stu) String() string{
 	return fmt.Sprintf("%d %d %d", s.Id, s.MoralScore, s.CapabilityScore)
 }
-func printRes(listC1 []Stu) {
-	for i := 0; i < len(listC1); i++ {
-		fmt.Printf("%d %d %d\n", listC1[i].Id, listC1[i].MoralScore, listC1[i].CapabilityScore)
+
+func printRes(list []Stu) {
+	for i := 0; i < len(list); i++ {
+		fmt.Printf("%d %d %d\n", list[i].Id, list[i].MoralScore, list[i].CapabilityScore)
 	}
 }
 
 func main() {
-	var lenC1  int
-	listC11 := make([]Stu,100000)
+	var lenA  int
+	listA := make([]Stu,100000)
 	var N, L, H int
 	var id, moral, capability int
 	fmt.Scan(&N, &L, &H)
@@ -42,35 +48,35 @@ func main() {
 		if L <= moral && L <= capability {
 			if H <= moral && H <= capability {
 				//1. 才德全尽 - H <= 德分，才分，按德才总分排序。
-				listC11[lenC1] = Stu{id, moral, capability, 1}
+				listA[lenA] = Stu{id, moral, capability, 1}
 			} else if H <= moral && capability < H {
 				//2. 德胜才 - H <= 德分，L <= 才分 < H，按德才总分排序且排在 case 1 之后。
-				listC11[lenC1] = Stu{id, moral, capability, 2}
+				listA[lenA] = Stu{id, moral, capability, 2}
 			} else if moral < H && capability < H && moral >= capability {
 				//3. 才德兼亡 - L <= 德分，才分（德分>才分） <= H， 按德才总分排序且排在 case 2 之后。
-				listC11[lenC1] = Stu{id, moral, capability, 3}
+				listA[lenA] = Stu{id, moral, capability, 3}
 			} else {
 				//4. 其他 - 总分排序，按德才总分排序且排在 case 3 之后。
-				listC11[lenC1] = Stu{id, moral, capability,4}
+				listA[lenA] = Stu{id, moral, capability,4}
 			}
-			lenC1 ++
+			lenA ++
 		}
 	}
-	listC1 :=  listC11[0:lenC1]
+	listB :=  listA[0:lenA]
 	//fmt.Print(len(listC1), len(listC2), len(listC3), len(listC4))
-	sort.Slice(listC1, func(i, j int) bool {
-		iGroup := listC1[i].Group
-		jGroup := listC1[j].Group
-		iScore := listC1[i].MoralScore + listC1[i].CapabilityScore
-		jScore := listC1[j].MoralScore + listC1[j].CapabilityScore
-		iMoralScore := listC1[i].MoralScore
-		jMoralScore := listC1[j].MoralScore
-		iId := listC1[i].Id
-		jId := listC1[j].Id
+	sort.Slice(listB, func(i, j int) bool {
+		iGroup := listB[i].Group
+		jGroup := listB[j].Group
+		iScore := listB[i].MoralScore + listB[i].CapabilityScore
+		jScore := listB[j].MoralScore + listB[j].CapabilityScore
+		iMoralScore := listB[i].MoralScore
+		jMoralScore := listB[j].MoralScore
+		iId := listB[i].Id
+		jId := listB[j].Id
 		if iGroup > jGroup { // 类别
 			return false
 		} else if iGroup == jGroup {
-			if iScore > jScore { // 先按总分
+			if iScore > jScore { // 同类别，按总分
 				return true
 			} else if iScore == jScore {
 				if iMoralScore > jMoralScore { // 总分相同，再按德分
@@ -87,6 +93,6 @@ func main() {
 		}
 		return true
 	})
-	fmt.Println(len(listC1))
-	printRes(listC1)
+	fmt.Println(len(listB))
+	printRes(listB)
 }
