@@ -9,7 +9,7 @@ import (
 /**
 * @Author: hsq_roy
 * @Date: 2020/7/17 9:44 上午
-* @description：
+* @description：大整数运算
  */
 func main() {
 	var n int

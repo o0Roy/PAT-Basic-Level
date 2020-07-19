@@ -8,6 +8,7 @@ import "fmt"
 * @description：
  */
 func move(num *[100]int,n int,m int) {
+	// 最后一位暂存
 	t := num[n-1]
 	for i := n-1;i > 0;i-- {
 		num[i] = num[i-1]
@@ -22,6 +23,7 @@ func main() {
 	for i := 0;i < n;i++ {
 		fmt.Scan(&num[i])
 	}
+	// 每次移动一位，移动n位，循环n次
 	for i := 0;i < m;i++ {
 		move(&num ,n ,m)
 	}
