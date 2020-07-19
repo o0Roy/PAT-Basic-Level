@@ -12,26 +12,29 @@ import (
 * @description：
  */
 func main() {
-	var a, da, b, db string
-	resA := new(big.Int)
-	resB := new(big.Int)
+	var A, Da, B, Db string
+	numA := new(big.Int)
+	numB := new(big.Int)
 	res := new(big.Int)
-	fmt.Scan(&a, &da, &b, &db)
-	ta := strings.Split(a, da)
-	tb := strings.Split(b, db)
-	lenA := len(ta)
-	lenB := len(tb)
-	sa := ""
-	sb := ""
+	fmt.Scan(&A, &Da, &B, &Db)
+	// 以Da, Db分割
+	arrA := strings.Split(A, Da)
+	arrB := strings.Split(B, Db)
+	// 根据长度判断出现次数
+	lenA := len(arrA)
+	lenB := len(arrB)
+	strA := ""
+	strB := ""
+	// 根据分割数构造字符串，分割数为分割点 - 1
 	for i := 0;i < lenA - 1;i++{
-		sa += da
+		strA += Da
 	}
 	for i := 0;i < lenB - 1;i++{
-		sb += db
+		strB += Db
 	}
-	//fmt.Println(sa, sb)
-	resA.SetString(sa, 10)
-	resB.SetString(sb, 10)
-	res.Add(resA, resB)
+	// 大数，字符串转十进制
+	numA.SetString(strA, 10)
+	numB.SetString(strB, 10)
+	res.Add(numA, numB)
 	fmt.Println(res)
 }
