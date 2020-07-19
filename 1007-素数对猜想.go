@@ -13,6 +13,7 @@ import (
 var num [100000]int
 var len int
 var total int
+// 判断素数
 func isPrinme(a int) bool {
 	for i := 2; float64(i) <= math.Sqrt(float64(a)); i++ {
 		if a%i == 0 {
@@ -21,6 +22,7 @@ func isPrinme(a int) bool {
 	}
 	return true
 }
+
 func getPrimeArray(n int) {
 	for i := 2; i <= n; i++ {
 		if isPrinme(i) {
