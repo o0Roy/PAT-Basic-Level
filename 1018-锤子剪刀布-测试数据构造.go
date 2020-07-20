@@ -22,6 +22,7 @@ func main() {
 	defer f.Close()
 	// 写入
 	var buf string
+        //  写入100000组数据
 	for i := 0; i < 100000; i++ {
 		buf = fmt.Sprintf("%s %s\n", string(str[rand.Intn(3)]), string(str[rand.Intn(3)]))
 		_, err := f.WriteString(buf)
