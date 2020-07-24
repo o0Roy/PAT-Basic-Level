@@ -7,4 +7,5 @@ package main
  */
 func main() {
 
+	三元运算组
 }
