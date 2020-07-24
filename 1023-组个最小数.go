@@ -38,6 +38,4 @@ func main() {
 	for i := 0; i < len(arr); i++ {
 		fmt.Printf("%d", arr[i])
 	}
-	//
-	fmt.Println()
 }
