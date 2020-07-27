@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/golang-collections/collections/stack"
+	"github.com/golang-collections/collections/queue"
 )
 /**
 * @Author: hsq_roy
@@ -10,7 +10,9 @@ import (
 * @description：
  */
 func main() {
-	stk := stack.New()
-	stk.Push(1)
-	fmt.Println(stk.Pop())
+	stk := queue.New()
+	stk.Enqueue(1)
+	stk.Enqueue(2)
+	fmt.Println(stk.Dequeue())
+	fmt.Println(stk.Dequeue())
 }
